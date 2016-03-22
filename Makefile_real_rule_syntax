@@ -11,6 +11,15 @@ data2.txt:
 data3.txt:
 	touch data3.txt
 
+#######################
+# if not use .PHONY, if a file named 'clean' exist, clean will file
+# $ make -f Makefile_real_rule_syntax  clean
+# make: `clean' is up to date.
+# $ ls
+# Makefile_print            Makefile_touch_rm_file    data1.txt                 data3.txt
+# Makefile_real_rule_syntax clean                     data2.txt                 result.txt
+#######################
+#.PHONY : clean
 clean:
 	@rm data1.txt data2.txt result.txt data3.txt
 
