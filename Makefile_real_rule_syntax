@@ -1,0 +1,37 @@
+result.txt: data1.txt data2.txt
+	cat data1.txt data2.txt > result.txt
+	@echo 'result.txt has been calculated'
+
+data1.txt:
+	@echo "I'm data in data1.txt" > data1.txt
+
+data2.txt:
+	@echo "I'm data in data2.txt" > data2.txt
+
+data3.txt:
+	touch data3.txt
+
+clean:
+	@rm data1.txt data2.txt result.txt data3.txt
+
+# Most of the time, all is the first target as make will default execute this rule
+all: data1.txt data2.txt result.txt data3.txt
+
+# $ make -f Makefile_real_rule_syntax
+# 	cat data1.txt data2.txt > result.txt
+# 	result.txt has been calculated
+# $ ls
+# 	Makefile_print            Makefile_touch_rm_file    data2.txt
+# 	Makefile_real_rule_syntax data1.txt                 result.txt
+# $ make -f Makefile_real_rule_syntax clean
+# 	rm: data3.txt: No such file or directory
+# make: *** [clean] Error 1
+# $ ls
+# 	Makefile_print            Makefile_real_rule_syntax Makefile_touch_rm_file
+# $ make -f Makefile_real_rule_syntax  all
+# 	cat data1.txt data2.txt > result.txt
+# 	result.txt has been calculated
+# 	touch data3.txt
+# $ ls
+# 	Makefile_print            Makefile_touch_rm_file    data2.txt                 result.txt
+# 	Makefile_real_rule_syntax data1.txt                 data3.txt
