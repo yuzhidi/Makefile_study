@@ -1,0 +1,27 @@
+# The target of a rule can be either a title for the task, or a filename
+print_hello:
+	echo 'Hello, world'
+print_leo:
+	echo 'Hi, Leo'
+	@echo 'show me once!'
+
+# output:
+# $ make -f Makefile_print
+# 	echo 'Hello, world'
+# 	Hello, world
+# $ make -f Makefile_print print_leo
+# 	echo 'Hi, Leo'
+# 	Hi, Leo
+# 	show me once!
+# $ make -f Makefile_print print_hello print_leo
+# 	echo 'Hello, world'
+# 	Hello, world
+# 	echo 'Hi, Leo'
+# 	Hi, Leo
+# 	show me once!
+# $ make -f Makefile_print  print_leo print_hello
+# 	echo 'Hi, Leo'
+# 	Hi, Leo
+# 	show me once!
+# 	echo 'Hello, world'
+# 	Hello, world
