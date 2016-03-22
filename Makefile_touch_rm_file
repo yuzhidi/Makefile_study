@@ -1,0 +1,13 @@
+# The target of a rule can be either a title for the task, or a filename
+testfile.txt:
+	@touch testfile.txt
+	@echo 'testfile.txt has been created'
+
+clean:
+	@rm testfile.txt
+	@echo 'testfile.txt has been deleted'
+
+# $ make -f Makefile_touch_rm_file testfile.txt
+# 	testfile.txt has been created
+# $ make -f Makefile_touch_rm_file clean
+# 	testfile.txt has been deleted
